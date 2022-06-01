@@ -1,6 +1,6 @@
 #include <stdio.h>
 #define BASE_LEN 5
-#define OUT_OF_RANGE -1
+#define EMPTY -1
 
 int arr[BASE_LEN];
 int count = 0;
@@ -26,7 +26,8 @@ void add(int key)
     int i = 0;
     while (1)
     {
-        int idx = (hash(key) + i) % BASE_LEN;
+        int idx = (hash(key) + (i*i)) % BASE_LEN;
+        printf("inserting %d at %d. count %d\n", key, idx, count);
         if (arr[idx] == EMPTY)
         {
             arr[idx] = key;
@@ -49,7 +50,7 @@ void find(int key)
             return;
         }
 
-        int idx = (hash(key) + i) % BASE_LEN;
+        int idx = (hash(key) + (i*i)) % BASE_LEN;
         if (arr[idx] == key)
         {
             printf("found\n");
