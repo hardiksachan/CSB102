@@ -17,34 +17,34 @@ void printll(struct Node *head)
     printf("%d\n", head->data);
 }
 
-struct Node *reverse(struct Node *head)
+void insert(struct Node **head, int data, int pos)
 {
-    struct Node *prev = NULL;
-    struct Node *curr = head;
-    struct Node *next = NULL;
-    while (curr != NULL)
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    struct Node *temp = *head;
+    if (pos == 0)
     {
-        next = curr->next;
-        curr->next = prev;
-        prev = curr;
-        curr = next;
+        newNode->next = *head;
+        *head = newNode;
     }
-    head = prev;
-    return head;
-}
-
-void *combine(struct Node *head, struct Node *tail)
-{
-    struct Node *curr = head;
-    while (curr->next != NULL)
+    else
     {
-        curr = curr->next;
+        int i = 0;
+        while (i < pos - 1)
+        {
+            temp = temp->next;
+            i++;
+        }
+        newNode->next = temp->next;
+        temp->next = newNode;
     }
-    curr->next = tail;
+    
 }
 
 int main()
 {
+
     struct Node *one = malloc(sizeof(struct Node));
     struct Node *two = malloc(sizeof(struct Node));
     struct Node *three = malloc(sizeof(struct Node));
@@ -62,27 +62,9 @@ int main()
 
     struct Node *head = one;
 
-    struct Node *six = malloc(sizeof(struct Node));
-    struct Node *seven = malloc(sizeof(struct Node));
-    struct Node *eight = malloc(sizeof(struct Node));
-    struct Node *nine = malloc(sizeof(struct Node));
 
-    six->data = 6;
-    seven->data = 7;
-    eight->data = 8;
-    nine->data = 9;
+    insert(&head, 20, 2);
 
-    six->next = seven;
-    seven->next = eight;
-    eight->next = nine;
-    nine->next = NULL;
 
-    struct Node *head2 = six;
-
-    printll(head);
-    printll(head2);
-    combine(head, head2);
-    printll(head);
-    head = reverse(head);
     printll(head);
 }

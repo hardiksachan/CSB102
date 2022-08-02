@@ -5,16 +5,16 @@
 int main()
 {
     int addr = 1500;
-    for (int i = 0; i < 25; i++)
+    for (int i = 0; i < 30; i++)
     {
-        for (int j = 0; j < 25; j++)
+        for (int j = 0; j < 50; j++)
         {
-            if (i == 15 && j == 20)
+            if (i == 15 && j == 35)
             {
                 printf("*");
             }
             printf("%d\t", addr);
-            addr += 1;
+            addr += 4;
         }
         printf("\n");
     }
